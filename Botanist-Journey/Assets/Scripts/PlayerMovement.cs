@@ -1,49 +1,39 @@
 using UnityEngine;
-using UnityEngine.InputSystem;
 
-public class PlayerMovement : MonoBehaviour
+public class PlayerMovement: MonoBehaviour
 {
+    public float speed = 5f;
+    public float jumpForce = 10f;
+    public float gravity = -9.81f; 
 
-    public float speed = 5f; // Movement speed
+    private CharacterController controller;
+    private Vector3 velocity; // Store the player's vertical velocity
 
-    // Jump settings
-    public float jumpForce = 10f; // Upward force applied to player
-    public bool isGrounded = true; // Flag to check if the player is on the ground
-    private Rigidbody rb; // Reference to the player's Rigidbody
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        // Get the Rigidbody component attatched to the player
-        rb = GetComponent<Rigidbody>();     
+        controller = GetComponent<CharacterController>();
     }
 
-    // Update is called once per frame
     void Update()
     {
         // Get input from horizontal and vertical axes
         float horizontalInput = Input.GetAxis("Horizontal");
         float verticalInput = Input.GetAxis("Vertical");
 
-        // Calculate movement vector
-        Vector3 movement = new Vector3(horizontalInput, 0f, verticalInput) * speed * Time.deltaTime;
+        // Calculate movement vector (XZ plane)
+        Vector3 move = new Vector3(horizontalInput, 0f, verticalInput);
 
-        // Move the player
-        transform.Translate(movement);
+        // Apply movement
+        controller.Move(move * speed * Time.deltaTime);
+
+        // Apply gravity
+        velocity.y += gravity * Time.deltaTime;
+        controller.Move(velocity * Time.deltaTime);
 
         // Jump if spacebar is pressed and the player is grounded
-        if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
+        if (Input.GetKeyDown(KeyCode.Space) && controller.isGrounded)
         {
-            rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
-            isGrounded = false; // Set grounded to false after jumping
-        }
-    }
-
-    void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.CompareTag("Ground"))
-        {
-            isGrounded = true;
+            velocity.y = Mathf.Sqrt(jumpForce * -2f * gravity); // Calculate jump velocity
         }
     }
 }
