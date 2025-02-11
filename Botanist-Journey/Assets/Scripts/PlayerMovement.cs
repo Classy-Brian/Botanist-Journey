@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class PlayerMovement: MonoBehaviour
 {
@@ -24,6 +25,12 @@ public class PlayerMovement: MonoBehaviour
         // Calculate movement vector (XZ plane)
         Vector3 move = new Vector3(horizontalInput, 0f, verticalInput);
 
+        if (isOnLadder && !controller.isGrounded)
+        {
+            // move.x = 0f;
+            move.z = 0f;
+        }
+
         // Apply movement
         controller.Move(move * speed * Time.deltaTime);
 
@@ -38,6 +45,7 @@ public class PlayerMovement: MonoBehaviour
             {
                 velocity.y = Mathf.Sqrt(jumpForce * -2f * gravity); // Calculate jump velocity
             }
+            
         }
     }
 
