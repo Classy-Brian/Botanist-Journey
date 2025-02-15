@@ -3,6 +3,7 @@
 public enum ToolType
 {
     None,
+    Blade,
     Hoe,
     Axe,
     Scissor,

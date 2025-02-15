@@ -10,7 +10,6 @@ public class Item
 {
     public string itemName;
     public string itemDescription;
-    public string itemIcon;
     public PlantType plantType = PlantType.None;
     public ToolType toolType = ToolType.None;
 }
