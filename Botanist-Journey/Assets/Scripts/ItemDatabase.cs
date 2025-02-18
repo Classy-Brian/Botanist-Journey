@@ -17,16 +17,10 @@ public class ItemDatabase : MonoBehaviour
 
         Item vine = new Item();
         vine.itemName = "Vine";
-        vine.itemDescription = "Climbable vine";
+        vine.itemDescription = "is vine";
         vine.plantType = PlantType.Vine;
 
         items.Add(machete);
         items.Add(vine);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }
