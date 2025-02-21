@@ -1,7 +1,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlantDatabase : MonoBehaviour
+// Script to store a database of plants
+public class PlantDatabase: MonoBehaviour
 {
+    // List to hold the plant data (Scriptable Objects)
     public List<Plant> plantList;
 }

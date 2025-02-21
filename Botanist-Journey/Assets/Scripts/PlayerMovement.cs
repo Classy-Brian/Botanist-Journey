@@ -1,18 +1,28 @@
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public class PlayerMovement: MonoBehaviour
 {
-    public float speed = 5f; 
+    // Movement speed
+    public float speed = 5f;
+
+    // Jump force
     public float jumpForce = 10f;
-    public float gravity = -9.81f; 
+
+    // Gravity value
+    public float gravity = -9.81f;
+
+    // Flag to check if the player is on a ladder
     public bool isOnLadder = false;
 
+    // Reference to the CharacterController component
     private CharacterController controller;
-    public Vector3 velocity; 
+
+    // Store the player's vertical velocity
+    public Vector3 velocity;
 
     void Start()
     {
+        // Get the CharacterController component
         controller = GetComponent<CharacterController>();
     }
 
@@ -25,15 +35,10 @@ public class PlayerMovement: MonoBehaviour
         // Calculate movement vector (XZ plane)
         Vector3 move = new Vector3(horizontalInput, 0f, verticalInput);
 
-        if (isOnLadder && !controller.isGrounded)
-        {
-            // move.x = 0f;
-            move.z = 0f;
-        }
-
         // Apply movement
         controller.Move(move * speed * Time.deltaTime);
 
+        // Apply gravity and jump only if not on the ladder
         if (!isOnLadder)
         {
             // Apply gravity
@@ -45,10 +50,10 @@ public class PlayerMovement: MonoBehaviour
             {
                 velocity.y = Mathf.Sqrt(jumpForce * -2f * gravity); // Calculate jump velocity
             }
-            
         }
     }
 
+    // Function to reset the player's vertical velocity (used when leaving a ladder)
     public void ResetVelocity()
     {
         velocity.y = 0f;
