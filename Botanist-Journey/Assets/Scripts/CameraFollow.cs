@@ -8,6 +8,18 @@ public class CameraFollow : MonoBehaviour
     public float smoothSpeed = 0.125f; // Smoothness of the camera movement
     public Vector3 rotationOffset; // Rotation offset from the target's rotation
 
+    // // Start is called once before the first execution of Update after the MonoBehaviour is created
+    // void Start()
+    // {
+        
+    // }
+
+    // // Update is called once per frame
+    // void Update()
+    // {
+        
+    // }
+
     // Gets called after all other Update functions have finished.
     void LateUpdate()
     {
