@@ -12,4 +12,8 @@ public class Tool: ScriptableObject
 
     // Durability of the Tool Rust(Patina- good Tarnish - mid Rust- Bad )
     public string durability; 
+
+    public int max_health; 
+
+    public int health; 
 }

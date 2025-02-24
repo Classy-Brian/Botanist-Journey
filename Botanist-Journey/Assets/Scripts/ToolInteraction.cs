@@ -2,6 +2,9 @@ using UnityEngine;
 
 public class ToolInteraction: MonoBehaviour
 {
+
+    public Tool tool;
+
     // Reference to the Tool data (Scriptable Object)
     public Tool toolData;
 
@@ -31,6 +34,19 @@ public class ToolInteraction: MonoBehaviour
         }
     }
 
+    void Use()
+    {
+        if (playerInRange && Input.GetKeyDown(KeyCode.R))
+        {
+            Debug.Log("Harvest Plant?");
+
+            tool.max_health -== 1;
+            Debug.Log("Tool  durability is " + tool.health); 
+
+        }
+
+    }
+
     void Update()
     {
         // Check if the player is in range and the interact button ("E") is pressed
@@ -45,4 +61,6 @@ public class ToolInteraction: MonoBehaviour
             Destroy(gameObject);
         }
     }
+
+
 }
