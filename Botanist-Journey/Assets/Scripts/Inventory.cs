@@ -9,7 +9,7 @@ public class Inventory: MonoBehaviour
     // List to store the collected tools
     public List<Tool> tools = new List<Tool>();
 
-    // Function to add a Plamt to the inventory
+    // Function to add a Plant to the inventory
     public void AddPlantItem(Plant plant)
     {
         // Add the plant to the list

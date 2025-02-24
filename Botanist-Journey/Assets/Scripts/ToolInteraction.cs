@@ -39,7 +39,7 @@ public class ToolInteraction: MonoBehaviour
             Debug.Log("Tool collected!");
 
             // Add the plant to the player's inventory
-            player.GetComponent<Inventory>().AddItem(toolData);
+            player.GetComponent<Inventory>().AddToolItem(toolData);
 
             // Destroy the plant object
             Destroy(gameObject);

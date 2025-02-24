@@ -39,7 +39,7 @@ public class PlantInteraction: MonoBehaviour
             Debug.Log("Plant harvested!");
 
             // Add the plant to the player's inventory
-            player.GetComponent<Inventory>().AddItem(plantData);
+            player.GetComponent<Inventory>().AddPlantItem(plantData);
 
             // Destroy the plant object
             Destroy(gameObject);
