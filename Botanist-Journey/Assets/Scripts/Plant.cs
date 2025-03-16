@@ -5,7 +5,7 @@ using UnityEngine;
 public class Plant: ScriptableObject
 {
     // Name of the plant (overrides the default 'name' property)
-    public new string name;
+    public string displayName;
 
     // Description of the plant
     public string desc;
